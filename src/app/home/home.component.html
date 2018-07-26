@@ -1,0 +1,67 @@
+<div class="row p-5">
+</div>
+<div class="content">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+    <div class="row">
+      <div class="col-6">
+        <div class="row col-10 mx-auto">
+          <div class="row form-group mx-auto" *ngFor="let content of dateContents; let i=index;">
+            <input type="text"
+              name="startDate{{i+1}}"
+              placeholder="Start Date" 
+              class="form-control col-xs-12 col-6"
+              [minDate]="getStartDate(i)"
+              #dp="bsDatepicker"
+              bsDatepicker [(bsValue)]="content.start.value" />
+            <input type="text"
+              placeholder="End Date" 
+              name="endDate{{i+1}}"
+              class="form-control col-xs-12 col-6"
+              [minDate]="content.start.value"
+              #dp="bsDatepicker"
+              bsDatepicker [(bsValue)]="content.end.value" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="row form-group mx-auto">
+            <button 
+              type="button" 
+              class="btn btn-primary"
+              (click)="onAddDateRow()">
+              Add New Date
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-6">
+        <div class="row col-10 mx-auto">
+          <div class="row form-group mx-auto" *ngFor="let input of inputContents; let i=index;">
+            <input type="text"
+              class="form-control col-6"
+              name="inputText{{i+1}}" 
+              [(ngModel)]="input.value" />      
+              <select class="form-control col-6" name="inputSelect{{i+1}}">
+                <option>First</option>
+                <option>Second</option>
+                <option>Last</option>
+              </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row form-group mx-auto">
+            <button 
+              type="button" 
+              class="btn btn-primary"
+              (click)="onAddInputRow()">
+              Add New Date
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mx-auto">
+      <button class="btn btn-success mx-auto" type="submit"> Submit </button>
+    </div>
+  </form>  
+</div>
